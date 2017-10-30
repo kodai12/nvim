@@ -2,7 +2,6 @@
 
 set number
 set cursorline
-set cursorcolumn
 set laststatus=2
 set cmdheight=2
 set showmatch
@@ -10,6 +9,7 @@ set helpheight=999
 set list
 set whichwrap=b,s,h,l,<,>,[,],~
 set scrolloff=5
+set t_Co=256
 
 " about file management
 set confirm
@@ -27,36 +27,74 @@ set wrapscan
 set gdefault
 
 " tab/indent setting
+set autoindent
+set smartindent
+set smarttab
 set expandtab
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
-set autoindent
-set smartindent
+
+if has('autocmd')
+  "ファイルタイプの検索を有効にする
+  filetype plugin on
+  "ファイルタイプに合わせたインデントを利用
+  filetype indent on
+  "sw=softtabstop, sts=shiftwidth, ts=tabstop, et=expandtabの略
+  autocmd FileType c           setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType html        setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType ruby        setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType js          setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType zsh         setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType python      setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType php         setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType scala       setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType json        setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType html        setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType css         setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType scss        setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType sass        setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType javascript  setlocal sw=4 sts=4 ts=4 et
+endif
 
 " command line setting
-set wildmenu wildmode=list:longest:full
+set wildmenu wildmode=list:longest,full
 set history=10000
 
+" keymapping
+inoremap fd <ESC>
+vnoremap fd <ESC>
+inoremap <C-j> <C-n>
+inoremap <C-k> <C-p>
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
+noremap <Space>h  ^
+noremap <Space>l  $
+nnoremap <Space>/  *
+noremap <Space>m  %
 
-" insertモードから抜ける
-inoremap <silent> fd <ESC>
+" keymapping related to plugins
+map <C-e> :NERDTreeToggle<CR>
+
+" invalidate keymapping
+nnoremap ZZ <Nop>
+nnoremap ZQ <Nop>
+nnoremap Q <Nop>
 
 " brackets auto increment
 inoremap { {}<Left>
 inoremap {<Enter> {}<Left><CR><ESC><S-o>
 inoremap ( ()<ESC>i
 inoremap (<Enter> ()<Left><CR><ESC><S-o>
+inoremap [ []<ESC>i
+inoremap [<Enter> []<Left><CR><ESC><S-o>
 inoremap " ""<Left>
 inoremap "<Enter> ""<Left><CR><ESC><S-o>
 inoremap ' ''<Left>
 inoremap '<Enter> ''<Left><CR><ESC><S-o>
 
-
-filetype indent on
-set tabstop=2
-set shiftwidth=2
-set expandtab
 
 " プラグインがインストールされるディレクトリ
 let s:dein_dir = expand('~/.cache/dein')
@@ -96,4 +134,20 @@ if dein#check_install()
 endif
 
 
+syntax on
+let g:alduin_Shout_Dragon_Aspect = 1
 colorscheme alduin
+
+" setting QFixHowm
+set runtimepath+=~/Desktop/qfixhowm-master
+
+let QFixHowm_Key = 'g'
+
+let howm_dir             = '~/howm'
+let howm_filename        = '%Y/%m/%Y-%m-%d-%H%M%S.txt'
+let howm_fileencoding    = 'utf-8'
+let howm_fileformat      = 'unix'
+" キーコードやマッピングされたキー列が完了するのを待つ時間(ミリ秒)
+set timeout timeoutlen=3000 ttimeoutlen=100
+" プレビューや絞り込みをQuickFix/ロケーションリストの両方で有効化(デフォルト:2)
+let QFixWin_EnableMode = 1
