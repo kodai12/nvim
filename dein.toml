@@ -45,13 +45,10 @@ let NERDTreeShowHidden = 1
 let g:nerdtree_tabs_open_on_console_startup=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 '''
 
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
-
-
 
 [[plugins]]
 repo = 'terryma/vim-multiple-cursors'
@@ -59,18 +56,18 @@ repo = 'terryma/vim-multiple-cursors'
 [[plugins]]
 repo = 'mhinz/vim-startify'
 
+# make git convinient
 [[plugins]]
-repo = 'vim-syntastic/syntastic'
-hook_add = '''
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
+repo = 'tpope/vim-fugitive'
 
-  let g:syntastic_always_populate_loc_list = 1
-  let g:syntastic_auto_loc_list = 1
-  let g:syntastic_check_on_open = 1
-  let g:syntastic_check_on_wq = 0
-'''
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+
+[[plugins]]
+repo = 'cohama/agit.vim'
+
+[[plugins]]
+repo = 'w0rp/ale'
 
 [[plugins]]
 repo = 'tmhedberg/matchit'
@@ -81,3 +78,5 @@ repo = 'thinca/vim-qfreplace'
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
 
+[[plugins]]
+repo = 'joonty/vdebug'

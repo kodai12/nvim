@@ -47,6 +47,14 @@ repo = 'ternjs/tern_for_vim'
 on_i = 1
 on_ft = 'javascript'
 
+[[plugins]]
+repo = 'jlebensold/reilly_restaurants'
+on_i = 1
+on_ft = 'javascript'
+hook_app = '''
+autocmd BufRead,BufNewFile *.es6 setfiletype javascript
+'''
+
 # python completion
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
@@ -85,3 +93,11 @@ repo = 'terryma/vim-expand-region'
 [[plugins]]
 repo = 'b4b4r07/vim-shellutils'
 
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+
+[[plugins]]
+repo = 'basyura/twibill.vim'
+
+[[plugins]]
+repo = 'basyura/TweetVim'

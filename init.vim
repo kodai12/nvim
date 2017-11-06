@@ -1,5 +1,4 @@
 " basic settings
-
 set number
 set cursorline
 set laststatus=2
@@ -10,6 +9,7 @@ set list
 set whichwrap=b,s,h,l,<,>,[,],~
 set scrolloff=5
 set t_Co=256
+set fileencodings=utf-8,euc-jp,sjis,cp932,iso-2022-jp
 
 " about file management
 set confirm
@@ -42,16 +42,16 @@ if has('autocmd')
   filetype indent on
   "sw=softtabstop, sts=shiftwidth, ts=tabstop, et=expandtabの略
   autocmd FileType c           setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType html        setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType html        setlocal sw=2 sts=2 ts=2 et
   autocmd FileType ruby        setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType js          setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType js          setlocal sw=2 sts=2 ts=2 et
   autocmd FileType zsh         setlocal sw=4 sts=4 ts=4 et
   autocmd FileType python      setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType php         setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType php         setlocal sw=2 sts=2 ts=2 et
   autocmd FileType scala       setlocal sw=4 sts=4 ts=4 et
   autocmd FileType json        setlocal sw=4 sts=4 ts=4 et
   autocmd FileType html        setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType css         setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType css         setlocal sw=2 sts=2 ts=2 et
   autocmd FileType scss        setlocal sw=4 sts=4 ts=4 et
   autocmd FileType sass        setlocal sw=4 sts=4 ts=4 et
   autocmd FileType javascript  setlocal sw=4 sts=4 ts=4 et
@@ -95,6 +95,14 @@ inoremap "<Enter> ""<Left><CR><ESC><S-o>
 inoremap ' ''<Left>
 inoremap '<Enter> ''<Left><CR><ESC><S-o>
 
+" setting quickfix
+function! OpenModifiableQF()
+        cw
+        set modifiable
+        set nowrap
+endfunction
+
+autocmd QuickfixCmdPost vimgrep call OpenModifiableQF()
 
 " プラグインがインストールされるディレクトリ
 let s:dein_dir = expand('~/.cache/dein')
@@ -118,7 +126,8 @@ if dein#load_state(s:dein_dir)
   let g:rc_dir    = expand("~/.config/nvim/")
   let s:toml      = g:rc_dir . '/dein.toml'
   let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
-
+  
+  call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
   " TOML を読み込み、キャッシュしておく
   call dein#load_toml(s:toml,      {'lazy': 0})
   call dein#load_toml(s:lazy_toml, {'lazy': 1})
@@ -132,7 +141,6 @@ endif
 if dein#check_install()
   call dein#install()
 endif
-
 
 syntax on
 let g:alduin_Shout_Dragon_Aspect = 1
@@ -151,3 +159,16 @@ let howm_fileformat      = 'unix'
 set timeout timeoutlen=3000 ttimeoutlen=100
 " プレビューや絞り込みをQuickFix/ロケーションリストの両方で有効化(デフォルト:2)
 let QFixWin_EnableMode = 1
+
+" gitgutter keybind
+nmap <silent> <SPACE>gk <Plug>GitGutterPrevHunkzz
+nmap <silent> <SPACE>gj <Plug>GitGutterNextHunkzz
+nmap <silent> <SPACE>gp <Plug>GitGutterPreviewHunk
+nnoremap <silent> <SPACE>gu <Nop>
+nmap <silent> <SPACE>gU <Plug>GitGutterUndoHunk
+nnoremap <silent> <SPACE>ga <Nop>
+nmap <silent> <SPACE>gA <Plug>GitGutterStageHunk
+nnoremap <silent> <SPACE>gg :GitGutter<CR>
+nnoremap <silent> <SPACE>gtt :GitGutterToggle<CR>
+nnoremap <silent> <SPACE>gts :GitGutterSignsToggle<CR>
+nnoremap <silent> <SPACE>gtl :GitGutterLineHighlightsToggle<CR>
