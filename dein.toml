@@ -35,19 +35,6 @@ repo = 'Shougo/neosnippet-snippets'
 repo = 'Shougo/denite.nvim'
 
 [[plugins]]
-repo = 'vim-airline/vim-airline'
-
-[[plugins]]
-repo = 'scrooloose/nerdtree'
-hook_add = '''
-let g:NERDTreeShowBookmarks=1
-let NERDTreeShowHidden = 1
-let g:nerdtree_tabs_open_on_console_startup=1
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-autocmd StdinReadPre * let s:std_in=1
-'''
-
-[[plugins]]
 repo = 'Shougo/context_filetype.vim'
 
 [[plugins]]
@@ -62,6 +49,14 @@ repo = 'tpope/vim-fugitive'
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
+hook_add = '''
+let g:gitgutter_sign_added = '✚'
+let g:gitgutter_sign_modified = '➜'
+let g:gitgutter_sign_removed = '✘'
+'''
+
+[[plugins]]
+repo = 'rhysd/committia.vim'
 
 [[plugins]]
 repo = 'cohama/agit.vim'
@@ -80,3 +75,29 @@ repo = 'junegunn/vim-easy-align'
 
 [[plugins]]
 repo = 'joonty/vdebug'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+let g:lightline = {
+  \ 'colorscheme': 'landscape',
+  \ 'mode_map': {'c': 'NORMAL'},
+  \ 'active': {
+  \   'left': [
+  \     ['mode', 'paste'],
+  \     ['gitbranch', 'readonly', 'filename', 'modified'],
+  \   ],
+  \   'right': [
+  \     ['lineinfo', 'syntastic'],
+  \     ['percent'],
+  \     ['charcode', 'fileformat', 'fileencoding', 'filetype'],
+  \   ]
+  \ },
+  \ 'component_function': {
+  \   'gitbranch': 'fugitive#head'
+  \ }
+  \ }
+'''

@@ -10,6 +10,7 @@ set whichwrap=b,s,h,l,<,>,[,],~
 set scrolloff=5
 set t_Co=256
 set fileencodings=utf-8,euc-jp,sjis,cp932,iso-2022-jp
+set sh=zsh
 
 " about file management
 set confirm
@@ -44,7 +45,6 @@ if has('autocmd')
   autocmd FileType c           setlocal sw=4 sts=4 ts=4 et
   autocmd FileType html        setlocal sw=2 sts=2 ts=2 et
   autocmd FileType ruby        setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType js          setlocal sw=2 sts=2 ts=2 et
   autocmd FileType zsh         setlocal sw=4 sts=4 ts=4 et
   autocmd FileType python      setlocal sw=4 sts=4 ts=4 et
   autocmd FileType php         setlocal sw=2 sts=2 ts=2 et
@@ -54,7 +54,7 @@ if has('autocmd')
   autocmd FileType css         setlocal sw=2 sts=2 ts=2 et
   autocmd FileType scss        setlocal sw=4 sts=4 ts=4 et
   autocmd FileType sass        setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType javascript  setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType javascript  setlocal sw=2 sts=2 ts=2 et
 endif
 
 " command line setting
