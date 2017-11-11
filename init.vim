@@ -74,26 +74,12 @@ noremap <Space>h  ^
 noremap <Space>l  $
 nnoremap <Space>/  *
 noremap <Space>m  %
-
-" keymapping related to plugins
-map <C-e> :NERDTreeToggle<CR>
+noremap <Space>noh :noh<CR>
 
 " invalidate keymapping
 nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
 nnoremap Q <Nop>
-
-" brackets auto increment
-inoremap { {}<Left>
-inoremap {<Enter> {}<Left><CR><ESC><S-o>
-inoremap ( ()<ESC>i
-inoremap (<Enter> ()<Left><CR><ESC><S-o>
-inoremap [ []<ESC>i
-inoremap [<Enter> []<Left><CR><ESC><S-o>
-inoremap " ""<Left>
-inoremap "<Enter> ""<Left><CR><ESC><S-o>
-inoremap ' ''<Left>
-inoremap '<Enter> ''<Left><CR><ESC><S-o>
 
 " setting quickfix
 function! OpenModifiableQF()
@@ -175,3 +161,29 @@ nnoremap <silent> <SPACE>gtl :GitGutterLineHighlightsToggle<CR>
 
 " gundo keymap
 nnoremap <SPACE>udt :GundoToggle<CR>
+
+" nerdtree keymap
+nnoremap [NERDTree] <Nop>
+nmap <SPACE>ft [NERDTree]
+nnoremap <silent> [NERDTree]t :NERDTreeToggle<CR>
+nnoremap <silent> [NERDTree]f :NERDTreeFocus<CR>
+nnoremap <silent> [NERDTree]F :NERDTreeFind<CR>
+
+" nerdcommenter keymap
+nmap <SPACE>cn <plug>NERDCommenterNested
+nmap <SPACE>cy <plug>NERDCommenterYank
+nmap <SPACE>cm <plug>NERDCommenterMinimal
+nmap <SPACE>cc <plug>NERDCommenterToggle
+nmap <SPACE>cs <plug>NERDCommenterSexy
+nmap <SPACE>ci <plug>NERDCommenterToEOL
+nmap <SPACE>cA <plug>NERDCommenterAppend
+nmap <SPACE>cx <plug>NERDCommenterAltDelims
+
+xmap <SPACE>cn <plug>NERDCommenterNested
+xmap <SPACE>cy <plug>NERDCommenterYank
+xmap <SPACE>cm <plug>NERDCommenterMinimal
+xmap <SPACE>cc <plug>NERDCommenterToggle
+xmap <SPACE>cs <plug>NERDCommenterSexy
+xmap <SPACE>ci <plug>NERDCommenterToEOL
+xmap <SPACE>cA <plug>NERDCommenterAppend
+xmap <SPACE>cx <plug>NERDCommenterAltDelims

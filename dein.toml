@@ -124,3 +124,23 @@ hook_add = '''
   let g:gundo_right = 1
   let g:gundo_auto_preview = 0
 '''
+
+# tag/brackets completion
+[[plugins]]
+repo = 'cohama/lexima.vim'
+
+# split screen resizable easily
+[[plugins]]
+repo = 'simeji/winresizer'
+hook_add = '''
+'''
+
+[[plugins]]
+repo = 'scrooloose/nerdcommenter'
+hook_add = '''
+  let g:NERDSpaceDelims=1
+  let g:NERDDefaultAlign='left'
+'''
+
+[[plugins]]
+repo = 'tpope/vim-surround'
