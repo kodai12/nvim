@@ -160,7 +160,7 @@ set timeout timeoutlen=3000 ttimeoutlen=100
 " プレビューや絞り込みをQuickFix/ロケーションリストの両方で有効化(デフォルト:2)
 let QFixWin_EnableMode = 1
 
-" gitgutter keybind
+" gitgutter keymap
 nmap <silent> <SPACE>gk <Plug>GitGutterPrevHunkzz
 nmap <silent> <SPACE>gj <Plug>GitGutterNextHunkzz
 nmap <silent> <SPACE>gp <Plug>GitGutterPreviewHunk
@@ -172,3 +172,6 @@ nnoremap <silent> <SPACE>gg :GitGutter<CR>
 nnoremap <silent> <SPACE>gtt :GitGutterToggle<CR>
 nnoremap <silent> <SPACE>gts :GitGutterSignsToggle<CR>
 nnoremap <silent> <SPACE>gtl :GitGutterLineHighlightsToggle<CR>
+
+" gundo keymap
+nnoremap <SPACE>udt :GundoToggle<CR>

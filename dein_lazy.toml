@@ -48,12 +48,7 @@ on_i = 1
 on_ft = 'javascript'
 
 [[plugins]]
-repo = 'jlebensold/reilly_restaurants'
-on_i = 1
-on_ft = 'javascript'
-hook_app = '''
-autocmd BufRead,BufNewFile *.es6 setfiletype javascript
-'''
+repo = 'othree/yajs.vim'
 
 # python completion
 [[plugins]]
