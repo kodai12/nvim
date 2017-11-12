@@ -60,6 +60,9 @@ on_ft = 'python'
 repo = 'davidhalter/jedi-vim'
 on_i = 1
 on_ft = 'python'
+hook_add = '''
+  let g:jedi#force_py_version = 3
+'''
 
 # php completion
 [[plugins]]
@@ -88,11 +91,20 @@ repo = 'terryma/vim-expand-region'
 [[plugins]]
 repo = 'b4b4r07/vim-shellutils'
 
+#tweet vim setting
+[[plugins]]
+repo = 'basyura/TweetVim'
+hook_add = '''
+  let g:tweetvim_display_icon = 1
+'''
+
 [[plugins]]
 repo = 'tyru/open-browser.vim'
 
 [[plugins]]
 repo = 'basyura/twibill.vim'
-
 [[plugins]]
-repo = 'basyura/TweetVim'
+
+repo = 'basyura/twibill.vim'
+[[plugins]]
+repo = 'mattn/favstar-vim'

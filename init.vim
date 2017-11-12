@@ -46,7 +46,7 @@ if has('autocmd')
   autocmd FileType html        setlocal sw=2 sts=2 ts=2 et
   autocmd FileType ruby        setlocal sw=2 sts=2 ts=2 et
   autocmd FileType zsh         setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType python      setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType python      setlocal sw=2 sts=2 ts=2 et
   autocmd FileType php         setlocal sw=2 sts=2 ts=2 et
   autocmd FileType scala       setlocal sw=4 sts=4 ts=4 et
   autocmd FileType json        setlocal sw=4 sts=4 ts=4 et
@@ -75,6 +75,7 @@ noremap <Space>l  $
 nnoremap <Space>/  *
 noremap <Space>m  %
 noremap <Space>noh :noh<CR>
+autocmd FileType python inoremap # X<C-H>#
 
 " invalidate keymapping
 nnoremap ZZ <Nop>
@@ -112,7 +113,7 @@ if dein#load_state(s:dein_dir)
   let g:rc_dir    = expand("~/.config/nvim/")
   let s:toml      = g:rc_dir . '/dein.toml'
   let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
-  
+
   call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
   " TOML を読み込み、キャッシュしておく
   call dein#load_toml(s:toml,      {'lazy': 0})
@@ -129,8 +130,7 @@ if dein#check_install()
 endif
 
 syntax on
-let g:alduin_Shout_Dragon_Aspect = 1
-colorscheme alduin
+colorscheme iceberg
 
 " setting QFixHowm
 set runtimepath+=~/Desktop/qfixhowm-master
@@ -187,3 +187,7 @@ xmap <SPACE>cs <plug>NERDCommenterSexy
 xmap <SPACE>ci <plug>NERDCommenterToEOL
 xmap <SPACE>cA <plug>NERDCommenterAppend
 xmap <SPACE>cx <plug>NERDCommenterAltDelims
+
+" tweetvim keymap
+nnoremap <silent> <SPACE>tvt :TweetVimHomeTimeline<CR>
+nnoremap <silent> <SPACE>tvp :TweetVimSay<CR>
