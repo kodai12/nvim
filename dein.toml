@@ -159,3 +159,9 @@ hook_add = '''
   let g:indent_guides_guide_size = 1
   let g:indentLine_fileTypeExclude = ['startify','help', 'nerdtree', 'tagbar', 'unite', 'tweetvim']
 '''
+
+[[plugins]]
+repo = 'elzr/vim-json'
+hook_add = '''
+  let g:vim_json_syntax_conceal = 0
+'''
