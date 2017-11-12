@@ -144,3 +144,12 @@ hook_add = '''
 
 [[plugins]]
 repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'bronson/vim-trailing-whitespace'
+hook_add = '''
+  autocmd BufWritePre * :FixWhitespace
+'''
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
