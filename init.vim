@@ -129,8 +129,11 @@ if dein#check_install()
   call dein#install()
 endif
 
+" setting colorsheme
 syntax on
+set background=dark
 colorscheme iceberg
+highlight Visual ctermfg=234 ctermbg=252 guifg=#161821 guibg=#c6c8d1
 
 " setting QFixHowm
 set runtimepath+=~/Desktop/qfixhowm-master
@@ -159,8 +162,8 @@ nnoremap <silent> <SPACE>gtt :GitGutterToggle<CR>
 nnoremap <silent> <SPACE>gts :GitGutterSignsToggle<CR>
 nnoremap <silent> <SPACE>gtl :GitGutterLineHighlightsToggle<CR>
 
-" gundo keymap
-nnoremap <SPACE>udt :GundoToggle<CR>
+" undotree keymap
+nnoremap <SPACE>udt :UndotreeToggle<CR>
 
 " nerdtree keymap
 nnoremap [NERDTree] <Nop>
@@ -168,6 +171,8 @@ nmap <SPACE>ft [NERDTree]
 nnoremap <silent> [NERDTree]t :NERDTreeToggle<CR>
 nnoremap <silent> [NERDTree]f :NERDTreeFocus<CR>
 nnoremap <silent> [NERDTree]F :NERDTreeFind<CR>
+
+nnoremap <SPACE>dg :Denite grep<CR>
 
 " nerdcommenter keymap
 nmap <SPACE>cn <plug>NERDCommenterNested

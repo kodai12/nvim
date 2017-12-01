@@ -64,6 +64,7 @@ hook_add = '''
 let g:gitgutter_sign_added = '✚'
 let g:gitgutter_sign_modified = '➜'
 let g:gitgutter_sign_removed = '✘'
+let g:gitgutter_max_signs = 500
 '''
 
 [[plugins]]
@@ -117,13 +118,7 @@ repo = 'easymotion/vim-easymotion'
 repo = 'junegunn/vim-easy-align'
 
 [[plugins]]
-repo = 'sjl/gundo.vim'
-hook_add = '''
-  let g:gundo_prefer_python3 = 1
-  let g:gundo_width = 60
-  let g:gundo_right = 1
-  let g:gundo_auto_preview = 0
-'''
+repo = 'mbbill/undotree'
 
 # tag/brackets completion
 [[plugins]]
@@ -164,4 +159,13 @@ hook_add = '''
 repo = 'elzr/vim-json'
 hook_add = '''
   let g:vim_json_syntax_conceal = 0
+'''
+
+[[plugins]]
+repo = 't9md/vim-textmanip'
+hook_add = '''
+  xmap <C-j> <Plug>(textmanip-move-down)
+  xmap <C-k> <Plug>(textmanip-move-up)
+  xmap <C-h> <Plug>(textmanip-move-left)
+  xmap <C-l> <Plug>(textmanip-move-right)
 '''
