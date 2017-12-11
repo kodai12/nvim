@@ -11,6 +11,7 @@ set scrolloff=5
 set t_Co=256
 set fileencodings=utf-8,euc-jp,sjis,cp932,iso-2022-jp
 set sh=zsh
+set clipboard+=unnamedplus
 
 " about file management
 set confirm
@@ -130,6 +131,7 @@ if dein#check_install()
 endif
 
 " setting colorsheme
+filetype plugin on
 syntax on
 set background=dark
 colorscheme iceberg

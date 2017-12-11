@@ -22,15 +22,6 @@ on_i  = 1
 on_ft = ['snippet']
 depends = ['neosnippet-snippets']
 
-[[plugins]]
-repo = 'hecal3/vim-leader-guide'
-
-[[plugins]]
-repo = 'majutsushi/tagbar'
-
-[[plugins]]
-repo = 'Shougo/neco-syntax'
-
 # html/css completion
 [[plugins]]
 repo = 'mattn/emmet-vim'
@@ -46,9 +37,6 @@ on_ft = 'javascript'
 repo = 'ternjs/tern_for_vim'
 on_i = 1
 on_ft = 'javascript'
-
-[[plugins]]
-repo = 'othree/yajs.vim'
 
 # python completion
 [[plugins]]
@@ -70,41 +58,9 @@ repo = 'padawan-php/deoplete-padawan'
 on_i = 1
 on_ft = 'php'
 
-# vim completion
-[[plugins]]
-repo = 'Shougo/neco-vim'
-
-# zsh completion
-[[plugins]]
-repo = 'zchee/deoplete-zsh'
-
-# github completion
-[[plugins]]
-repo = 'SevereOverfl0w/deoplete-github'
-
-[[plugins]]
-repo = 'vim-jp/vimdoc-ja'
-
-[[plugins]]
-repo = 'terryma/vim-expand-region'
-
-[[plugins]]
-repo = 'b4b4r07/vim-shellutils'
-
 #tweet vim setting
 [[plugins]]
 repo = 'basyura/TweetVim'
 hook_add = '''
   let g:tweetvim_display_icon = 1
 '''
-
-[[plugins]]
-repo = 'tyru/open-browser.vim'
-
-[[plugins]]
-repo = 'basyura/twibill.vim'
-[[plugins]]
-
-repo = 'basyura/twibill.vim'
-[[plugins]]
-repo = 'mattn/favstar-vim'

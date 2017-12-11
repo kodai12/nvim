@@ -169,3 +169,51 @@ hook_add = '''
   xmap <C-h> <Plug>(textmanip-move-left)
   xmap <C-l> <Plug>(textmanip-move-right)
 '''
+
+#solidity syntax
+repo = 'tomlion/vim-solidity'
+
+[[plugins]]
+repo = 'hecal3/vim-leader-guide'
+
+[[plugins]]
+repo = 'majutsushi/tagbar'
+
+[[plugins]]
+repo = 'Shougo/neco-syntax'
+
+[[plugins]]
+repo = 'othree/yajs.vim'
+
+# vim completion
+[[plugins]]
+repo = 'Shougo/neco-vim'
+
+# zsh completion
+[[plugins]]
+repo = 'zchee/deoplete-zsh'
+
+# github completion
+[[plugins]]
+repo = 'SevereOverfl0w/deoplete-github'
+
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+
+[[plugins]]
+repo = 'terryma/vim-expand-region'
+
+[[plugins]]
+repo = 'b4b4r07/vim-shellutils'
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+
+[[plugins]]
+repo = 'basyura/twibill.vim'
+
+[[plugins]]
+repo = 'basyura/twibill.vim'
+
+[[plugins]]
+repo = 'mattn/favstar-vim'
