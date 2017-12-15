@@ -205,15 +205,3 @@ repo = 'terryma/vim-expand-region'
 
 [[plugins]]
 repo = 'b4b4r07/vim-shellutils'
-
-[[plugins]]
-repo = 'tyru/open-browser.vim'
-
-[[plugins]]
-repo = 'basyura/twibill.vim'
-
-[[plugins]]
-repo = 'basyura/twibill.vim'
-
-[[plugins]]
-repo = 'mattn/favstar-vim'

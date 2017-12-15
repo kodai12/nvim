@@ -64,3 +64,18 @@ repo = 'basyura/TweetVim'
 hook_add = '''
   let g:tweetvim_display_icon = 1
 '''
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+
+[[plugins]]
+repo = 'basyura/twibill.vim'
+
+[[plugins]]
+repo = 'tyru/open-browser.vim'
+
+[[plugins]]
+repo = 'basyura/twibill.vim'
+
+[[plugins]]
+repo = 'mattn/favstar-vim'

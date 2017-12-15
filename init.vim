@@ -12,6 +12,8 @@ set t_Co=256
 set fileencodings=utf-8,euc-jp,sjis,cp932,iso-2022-jp
 set sh=zsh
 set clipboard+=unnamedplus
+set mouse-=a
+set backspace=indent,eol,start
 
 " about file management
 set confirm
