@@ -53,7 +53,6 @@ if has('autocmd')
   autocmd FileType php         setlocal sw=2 sts=2 ts=2 et
   autocmd FileType scala       setlocal sw=4 sts=4 ts=4 et
   autocmd FileType json        setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType html        setlocal sw=4 sts=4 ts=4 et
   autocmd FileType css         setlocal sw=2 sts=2 ts=2 et
   autocmd FileType scss        setlocal sw=4 sts=4 ts=4 et
   autocmd FileType sass        setlocal sw=4 sts=4 ts=4 et
@@ -197,6 +196,6 @@ xmap <SPACE>ci <plug>NERDCommenterToEOL
 xmap <SPACE>cA <plug>NERDCommenterAppend
 xmap <SPACE>cx <plug>NERDCommenterAltDelims
 
-" tweetvim keymap
-nnoremap <silent> <SPACE>tvt :TweetVimHomeTimeline<CR>
-nnoremap <silent> <SPACE>tvp :TweetVimSay<CR>
+" prettier setting cf. https://github.com/prettier/prettier-eslint-cli
+"autocmd FileType javascript set formatprg=prettier-eslint\ --stdin
+"autocmd BufWritePre *.js :normal gggqG
