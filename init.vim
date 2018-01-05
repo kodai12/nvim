@@ -199,3 +199,6 @@ xmap <SPACE>cx <plug>NERDCommenterAltDelims
 " prettier setting cf. https://github.com/prettier/prettier-eslint-cli
 "autocmd FileType javascript set formatprg=prettier-eslint\ --stdin
 "autocmd BufWritePre *.js :normal gggqG
+
+" setting .vue file syntax
+autocmd FileType vue syntax sync fromstart

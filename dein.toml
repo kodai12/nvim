@@ -49,6 +49,9 @@ repo = 'Shougo/denite.nvim'
 repo = 'Shougo/context_filetype.vim'
 
 [[plugins]]
+repo = 'osyo-manga/vim-precious'
+
+[[plugins]]
 repo = 'terryma/vim-multiple-cursors'
 
 [[plugins]]
@@ -208,3 +211,6 @@ repo = 'b4b4r07/vim-shellutils'
 
 [[plugins]]
 repo = 'heavenshell/vim-prettier'
+
+[[plugins]]
+repo = 'posva/vim-vue'
