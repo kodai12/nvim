@@ -79,3 +79,4 @@ repo = 'basyura/twibill.vim'
 
 [[plugins]]
 repo = 'mattn/favstar-vim'
+

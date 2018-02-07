@@ -202,3 +202,7 @@ xmap <SPACE>cx <plug>NERDCommenterAltDelims
 
 " setting .vue file syntax
 autocmd FileType vue syntax sync fromstart
+
+" ale keymap
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)

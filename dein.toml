@@ -77,9 +77,6 @@ repo = 'rhysd/committia.vim'
 repo = 'cohama/agit.vim'
 
 [[plugins]]
-repo = 'w0rp/ale'
-
-[[plugins]]
 repo = 'tmhedberg/matchit'
 
 [[plugins]]
@@ -214,3 +211,22 @@ repo = 'heavenshell/vim-prettier'
 
 [[plugins]]
 repo = 'posva/vim-vue'
+
+[[plugins]]
+repo = 'w0rp/ale'
+depends = ['lightline']
+hook_add = '''
+let g:lightline = {
+  \'active': {
+  \  'left': [
+  \    ['mode', 'paste'],
+  \    ['readonly', 'filename', 'modified', 'ale'],
+  \  ]
+  \},
+  \'component_function': {
+  \  'ale': 'ALEGetStatusLine'
+  \}
+  \ }
+let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+'''
+
