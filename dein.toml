@@ -93,7 +93,6 @@ repo = 'itchyny/lightline.vim'
 hook_add = '''
 let g:lightline = {
   \ 'colorscheme': 'landscape',
-  \ 'mode_map': {'c': 'NORMAL'},
   \ 'active': {
   \   'left': [
   \     ['mode', 'paste'],
@@ -106,9 +105,26 @@ let g:lightline = {
   \   ]
   \ },
   \ 'component_function': {
-  \   'gitbranch': 'fugitive#head'
+  \   'gitbranch': 'fugitive#head',
+  \   'syntastic': 'SyntasticStatuslineFlag',
+  \ },
+  \ 'component_expand': {
+  \   'syntastic': 'SyntasticStatuslineFlag',
+  \ },
+  \ 'component_type': {
+  \   'syntastic': 'error',
+  \ },
   \ }
-  \ }
+let g:syntastic_mode_map = { 'mode': 'passive',
+      \                      'active_filetypes': ['c', 'cpp'] }
+augroup AutoSyntastic
+  autocmd!
+  autocmd BufWritePost *.c,*.cpp call s:syntastic()
+augroup END
+function! s:syntastic()
+  SyntasticCheck
+  call lightline#update()
+endfunction
 '''
 
 [[plugins]]
@@ -207,7 +223,14 @@ repo = 'terryma/vim-expand-region'
 repo = 'b4b4r07/vim-shellutils'
 
 [[plugins]]
-repo = 'heavenshell/vim-prettier'
+repo = 'prettier/vim-prettier'
+hook_add = '''
+let g:prettier#config#use_tabs = 'false'
+let g:prettier#config#semi = 'true'
+let g:prettier#config#single_quote = 'true'
+let g:prettier#config#bracket_spacing = 'true'
+let g:prettier#config#trailing_comma = 'es5'
+'''
 
 [[plugins]]
 repo = 'posva/vim-vue'
@@ -230,3 +253,17 @@ let g:lightline = {
 let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 '''
 
+[[plugins]]
+repo = 'mopp/sky-color-clock.vim'
+depends = ['lightline']
+hook_add = '''
+" For lightline.vim
+let g:lightline = {
+            \ 'component': {
+            \   'sky_color_clock': "%#SkyColorClock#%{' ' . sky_color_clock#statusline() . ' '}%#SkyColorClockTemp# ",
+            \ },
+            \ 'component_raw': {
+            \   'sky_color_clock': 1,
+            \ },
+            \ }
+'''

@@ -1,4 +1,4 @@
-" basic settings
+"" basic settings
 set number
 set cursorline
 set laststatus=2
@@ -15,14 +15,14 @@ set clipboard+=unnamedplus
 set mouse-=a
 set backspace=indent,eol,start
 
-" about file management
+"" about file management
 set confirm
 set hidden
 set autoread
 set nobackup
 set noswapfile
 
-" about search/replacement management
+"" about search/replacement management
 set hlsearch
 set incsearch
 set ignorecase
@@ -30,7 +30,7 @@ set smartcase
 set wrapscan
 set gdefault
 
-" tab/indent setting
+"" tab/indent setting
 set autoindent
 set smartindent
 set smarttab
@@ -59,11 +59,11 @@ if has('autocmd')
   autocmd FileType javascript  setlocal sw=2 sts=2 ts=2 et
 endif
 
-" command line setting
+"" command line setting
 set wildmenu wildmode=list:longest,full
 set history=10000
 
-" keymapping
+"" keymapping
 inoremap fd <ESC>
 vnoremap fd <ESC>
 inoremap <C-j> <C-n>
@@ -79,12 +79,12 @@ noremap <Space>m  %
 noremap <Space>noh :noh<CR>
 autocmd FileType python inoremap # X<C-H>#
 
-" invalidate keymapping
+"" invalidate keymapping
 nnoremap ZZ <Nop>
 nnoremap ZQ <Nop>
 nnoremap Q <Nop>
 
-" setting quickfix
+"" setting quickfix
 function! OpenModifiableQF()
         cw
         set modifiable
@@ -131,14 +131,14 @@ if dein#check_install()
   call dein#install()
 endif
 
-" setting colorsheme
+"" setting colorsheme
 filetype plugin on
 syntax on
 set background=dark
 colorscheme iceberg
 highlight Visual ctermfg=234 ctermbg=252 guifg=#161821 guibg=#c6c8d1
 
-" setting QFixHowm
+"" setting QFixHowm
 set runtimepath+=~/Desktop/qfixhowm-master
 
 let QFixHowm_Key = 'g'
@@ -152,7 +152,7 @@ set timeout timeoutlen=3000 ttimeoutlen=100
 " プレビューや絞り込みをQuickFix/ロケーションリストの両方で有効化(デフォルト:2)
 let QFixWin_EnableMode = 1
 
-" gitgutter keymap
+"" gitgutter keymap
 nmap <silent> <SPACE>gk <Plug>GitGutterPrevHunkzz
 nmap <silent> <SPACE>gj <Plug>GitGutterNextHunkzz
 nmap <silent> <SPACE>gp <Plug>GitGutterPreviewHunk
@@ -165,10 +165,10 @@ nnoremap <silent> <SPACE>gtt :GitGutterToggle<CR>
 nnoremap <silent> <SPACE>gts :GitGutterSignsToggle<CR>
 nnoremap <silent> <SPACE>gtl :GitGutterLineHighlightsToggle<CR>
 
-" undotree keymap
+"" undotree keymap
 nnoremap <SPACE>udt :UndotreeToggle<CR>
 
-" nerdtree keymap
+"" nerdtree keymap
 nnoremap [NERDTree] <Nop>
 nmap <SPACE>ft [NERDTree]
 nnoremap <silent> [NERDTree]t :NERDTreeToggle<CR>
@@ -177,7 +177,7 @@ nnoremap <silent> [NERDTree]F :NERDTreeFind<CR>
 
 nnoremap <SPACE>dg :Denite grep<CR>
 
-" nerdcommenter keymap
+"" nerdcommenter keymap
 nmap <SPACE>cn <plug>NERDCommenterNested
 nmap <SPACE>cy <plug>NERDCommenterYank
 nmap <SPACE>cm <plug>NERDCommenterMinimal
@@ -196,13 +196,62 @@ xmap <SPACE>ci <plug>NERDCommenterToEOL
 xmap <SPACE>cA <plug>NERDCommenterAppend
 xmap <SPACE>cx <plug>NERDCommenterAltDelims
 
-" prettier setting cf. https://github.com/prettier/prettier-eslint-cli
+"" prettier setting cf. https://github.com/prettier/prettier-eslint-cli
 "autocmd FileType javascript set formatprg=prettier-eslint\ --stdin
 "autocmd BufWritePre *.js :normal gggqG
 
-" setting .vue file syntax
+"" setting .vue file syntax
 autocmd FileType vue syntax sync fromstart
 
-" ale keymap
+"" ale keymap
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+"" setting sky-color-clock
+set statusline+=%#SkyColorClockTemp#\ %#SkyColorClock#%{sky_color_clock#statusline()}
+
+"" tab setting cf.https://qiita.com/wadako111/items/755e753677dd72d8036d
+" Anywhere SID.
+function! s:SID_PREFIX()
+  return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
+endfunction
+
+" Set tabline.
+function! s:my_tabline()  "{{{
+  let s = ''
+  for i in range(1, tabpagenr('$'))
+    let bufnrs = tabpagebuflist(i)
+    let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
+    let no = i  " display 0-origin tabpagenr.
+    let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
+    let title = fnamemodify(bufname(bufnr), ':t')
+    let title = '[' . title . ']'
+    let s .= '%'.i.'T'
+    let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
+    let s .= no . ':' . title
+    let s .= mod
+    let s .= '%#TabLineFill# '
+  endfor
+  let s .= '%#TabLineFill#%T%=%#TabLine#'
+  return s
+endfunction "}}}
+let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
+set showtabline=2 " 常にタブラインを表示
+
+" The prefix key.
+nnoremap    [Tag]   <Nop>
+nmap    t [Tag]
+" Tab jump
+for n in range(1, 9)
+  execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
+endfor
+" t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
+
+map <silent> [Tag]c :tablast <bar> tabnew<CR>
+" tc 新しいタブを一番右に作る
+map <silent> [Tag]x :tabclose<CR>
+" tx タブを閉じる
+map <silent> [Tag]n :tabnext<CR>
+" tn 次のタブ
+map <silent> [Tag]p :tabprevious<CR>
+" tp 前のタブ
