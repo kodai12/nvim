@@ -44,12 +44,13 @@ repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
+hook_add = '''
+call denite#custom#var('file_rec', 'command',
+    \ ['rg', '--files', '--glob', '!.git', ''])
+'''
 
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
-
-[[plugins]]
-repo = 'osyo-manga/vim-precious'
 
 [[plugins]]
 repo = 'terryma/vim-multiple-cursors'
@@ -62,6 +63,9 @@ repo = 'mhinz/vim-startify'
 repo = 'tpope/vim-fugitive'
 
 [[plugins]]
+repo = 'idanarye/vim-merginal'
+
+[[plugins]]
 repo = 'airblade/vim-gitgutter'
 hook_add = '''
 let g:gitgutter_sign_added = '✚'
@@ -72,9 +76,57 @@ let g:gitgutter_max_signs = 500
 
 [[plugins]]
 repo = 'rhysd/committia.vim'
+hook_add = '''
+let g:committia_open_only_vim_starting = 1
+let g:committia_hooks = {}
+function! g:committia_hooks.edit_open(info)
+  " Scroll the diff window from insert mode
+  " Map <C-n> and <C-p>
+  nmap <buffer><C-j> <Plug>(committia-scroll-diff-down-half)
+  nmap <buffer><C-k> <Plug>(committia-scroll-diff-up-half)
+endfunction
+'''
 
 [[plugins]]
 repo = 'cohama/agit.vim'
+hook_add = '''
+autocmd FileType agit call s:my_agit_setting()
+function! s:my_agit_setting()
+  nmap <buffer> ch <Plug>(agit-git-cherry-pick)
+  nmap <buffer> Rv <Plug>(agit-git-revert)
+endfunction
+'''
+
+[[plugins]]
+repo = 'rhysd/conflict-marker.vim'
+
+[[plugins]]
+repo = 'neoclide/denite-git'
+hook_add = '''
+call dein#add('Shougo/denite.nvim')
+call dein#add('chemzqm/vim-easygit')
+call dein#add('chemzqm/denite-git')
+call denite#custom#map(
+      \ 'normal',
+      \ 'a',
+      \ '<denite:do_action:add>',
+      \ 'noremap'
+      \)
+
+call denite#custom#map(
+      \ 'normal',
+      \ 'd',
+      \ '<denite:do_action:delete>',
+      \ 'noremap'
+      \)
+
+call denite#custom#map(
+      \ 'normal',
+      \ 'r',
+      \ '<denite:do_action:reset>',
+      \ 'noremap'
+      \)
+'''
 
 [[plugins]]
 repo = 'tmhedberg/matchit'
@@ -129,6 +181,32 @@ endfunction
 
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
+hook_add = '''
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_use_smartsign_jp = 1
+let g:EasyMotion_use_migemo = 1
+let g:EasyMotion_use_upper = 1
+let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
+let g:EasyMotion_enter_jump_first = 1
+let g:EasyMotion_space_jump_first = 1
+let g:EasyMotion_prompt = 'Search by leading {n} character >>> '
+" <Leader>f{char} to move to {char}
+map  f <Plug>(easymotion-bd-f)
+nmap f <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+nmap <SPACE>f <Plug>(easymotion-overwin-f2)
+vmap <SPACE>f <Plug>(easymotion-bd-f2)
+
+" Move to line
+map <SPACE>L <Plug>(easymotion-bd-jk)
+nmap <SPACE>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <SPACE>w <Plug>(easymotion-bd-w)
+nmap <SPACE>w <Plug>(easymotion-overwin-w)
+'''
 
 [[plugins]]
 repo = 'junegunn/vim-easy-align'
@@ -201,6 +279,10 @@ repo = 'Shougo/neco-syntax'
 [[plugins]]
 repo = 'othree/yajs.vim'
 
+# css customize
+[[plugins]]
+repo = 'ap/vim-css-color'
+
 # vim completion
 [[plugins]]
 repo = 'Shougo/neco-vim'
@@ -239,6 +321,31 @@ repo = 'posva/vim-vue'
 repo = 'w0rp/ale'
 depends = ['lightline']
 hook_add = '''
+" 保存時のみ実行する
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+" 表示に関する設定
+let g:ale_sign_error = 'E>'
+let g:ale_sign_warning = 'W>'
+highlight link ALEErrorSign Error
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+let g:ale_linters = {
+\   'python': ['flake8'],
+\   'php': ['phpstan'],
+\   'javascript': ['eslint'],
+\   'vue': ['prettier'],
+\   'html': ['tidy'],
+\   'css': ['stylelint'],
+\   'sass': ['stylelint'],
+\   'scss': ['stylelint'],
+\   'sql': ['sqlint'],
+\   'Dockerfile': ['hadolint'],
+\   'json': ['jsonlint'],
+\   'vim': ['vint'],
+\}
+
 let g:lightline = {
   \'active': {
   \  'left': [
@@ -267,3 +374,12 @@ let g:lightline = {
             \ },
             \ }
 '''
+
+[[plugins]]
+repo = 'editorconfig/editorconfig-vim'
+hook_add = '''
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+'''
+
+[[plugins]]
+repo = 'guns/xterm-color-table.vim'

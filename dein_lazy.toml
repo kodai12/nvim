@@ -80,3 +80,16 @@ repo = 'basyura/twibill.vim'
 [[plugins]]
 repo = 'mattn/favstar-vim'
 
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+on_ft = ['vue', 'toml']
+hook_source = '''
+  let g:precious_enable_switch_CursorMoved_i = {'*': 0}
+  let g:precious_enable_switch_CursorHold    = {'*': 0}
+	let g:precious_enable_switchers = {
+    \	'*':    {'setfiletype': 0},
+    \	'toml': {'setfiletype': 1},
+    \	'html': {'setfiletype': 1},
+    \	'vue':  {'setfiletype': 1},
+	\ }
+'''

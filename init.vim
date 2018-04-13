@@ -93,6 +93,13 @@ endfunction
 
 autocmd QuickfixCmdPost vimgrep call OpenModifiableQF()
 
+"" 現在のファイル名を表示する時にフルパスで表示する
+nnoremap <C-g> 1<C-g>
+"" ファイルを開いた時にファイルのフルパスをコマンドラインに表示
+augroup EchoFilePath
+  autocmd WinEnter * execute "normal! 1\<C-g>"
+augroup END
+
 " プラグインがインストールされるディレクトリ
 let s:dein_dir = expand('~/.cache/dein')
 " dein.vim 本体
@@ -137,6 +144,8 @@ syntax on
 set background=dark
 colorscheme iceberg
 highlight Visual ctermfg=234 ctermbg=252 guifg=#161821 guibg=#c6c8d1
+" ALE warningの色を調整
+highlight ALEWarningSign ctermfg=226
 
 "" setting QFixHowm
 set runtimepath+=~/Desktop/qfixhowm-master
@@ -152,6 +161,13 @@ set timeout timeoutlen=3000 ttimeoutlen=100
 " プレビューや絞り込みをQuickFix/ロケーションリストの両方で有効化(デフォルト:2)
 let QFixWin_EnableMode = 1
 
+"" fugitive keymap
+nnoremap <silent> <SPACE>gs :<C-u>Gstatus<CR>
+nnoremap <silent> <SPACE>gv :<C-u>Gvdiff<CR>
+nnoremap <silent> <SPACE>gb :Gblame<CR>
+nnoremap <silent> <SPACE>ga :<C-u>Gwrite<CR>
+nnoremap <silent> <SPACE>gC :<C-u>Gcommit-v<CR>
+
 "" gitgutter keymap
 nmap <silent> <SPACE>gk <Plug>GitGutterPrevHunkzz
 nmap <silent> <SPACE>gj <Plug>GitGutterNextHunkzz
@@ -165,6 +181,10 @@ nnoremap <silent> <SPACE>gtt :GitGutterToggle<CR>
 nnoremap <silent> <SPACE>gts :GitGutterSignsToggle<CR>
 nnoremap <silent> <SPACE>gtl :GitGutterLineHighlightsToggle<CR>
 
+"" agit keymap
+nmap <silent> <SPACE>av <Plug>Agit
+nmap <silent> <SPACE>avf <Plug>AgitFile
+
 "" undotree keymap
 nnoremap <SPACE>udt :UndotreeToggle<CR>
 
@@ -175,7 +195,12 @@ nnoremap <silent> [NERDTree]t :NERDTreeToggle<CR>
 nnoremap <silent> [NERDTree]f :NERDTreeFocus<CR>
 nnoremap <silent> [NERDTree]F :NERDTreeFind<CR>
 
+"" merginal keymap
+nnoremap <SPACE>mt :<C-u>MerginalToggle<CR>
+
+"" denite keymap
 nnoremap <SPACE>dg :Denite grep<CR>
+nnoremap <SPACE>dgc :DeniteCursorWord grep<CR>
 
 "" nerdcommenter keymap
 nmap <SPACE>cn <plug>NERDCommenterNested
