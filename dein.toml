@@ -283,10 +283,6 @@ repo = 'othree/yajs.vim'
 [[plugins]]
 repo = 'ap/vim-css-color'
 
-# vim completion
-[[plugins]]
-repo = 'Shougo/neco-vim'
-
 # zsh completion
 [[plugins]]
 repo = 'zchee/deoplete-zsh'

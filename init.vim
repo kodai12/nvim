@@ -94,7 +94,7 @@ endfunction
 autocmd QuickfixCmdPost vimgrep call OpenModifiableQF()
 
 "" 現在のファイル名を表示する時にフルパスで表示する
-nnoremap <C-g> 1<C-g>
+nnoremap <c-g> 1<c-g>
 "" ファイルを開いた時にファイルのフルパスをコマンドラインに表示
 augroup EchoFilePath
   autocmd WinEnter * execute "normal! 1\<C-g>"
