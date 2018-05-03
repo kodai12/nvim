@@ -1,7 +1,9 @@
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
+depends = 'context_filetype.vim'
 if ='''has('nvim')'''
 on_event = 'InsertEnter'
+on_i = 1
 hook_source = '''
   let g:deoplete#enable_at_startup = 1
   let g:deoplete#enable_ignore_case = 1
@@ -12,7 +14,10 @@ hook_source = '''
 '''
 
 [[plugins]]
-repo = 'Shougo/neosnippet'
+repo = 'Shougo/neosnippet.vim'
+depends = 'context_filetype.vim'
+on_event = 'InsertCharPre'
+on_ft = 'snippet'
 hook_source = '''
   imap <C-k> <Plug>(neosnippet_expand_or_jump)
   smap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -28,15 +33,22 @@ depends = ['neosnippet-snippets']
 # many completion
 [[plugins]]
 repo = 'autozimu/LanguageClient-neovim'
-on_ft  = ['vue', 'javascript', 'python', 'php']
+depends = 'deoplete.nvim'
+on_ft  = ['rust', 'vue', 'javascript', 'python']
+build = './install.sh'
 hook_source = '''
+set hidden
 let g:LanguageClient_diagnosticsEnable = 0
 let g:LanguageClient_serverCommands = {
+      \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
 			\ 'vue': ['vls'],
 			\ 'javascript': ['javascript-typescript-stdio'],
 			\ 'python': ['pyls'],
-			\ 'php': ['php', '~/.config/composer/php-language-server/bin/php-language-server.php'],
 			\ }
+let g:LanguageClient_autoStart = 1
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 }'''
 
 # html/css completion
@@ -54,6 +66,10 @@ on_ft = 'javascript'
 repo = 'ternjs/tern_for_vim'
 on_i = 1
 on_ft = 'javascript'
+
+[[plugins]]
+repo = 'posva/vim-vue'
+on_ft = 'vue'
 
 # python completion
 [[plugins]]
@@ -88,6 +104,14 @@ hook_source = '''
   augroup padawan-setting
     autocmd! FileType php setlocal completeopt-=preview
   augroup END
+'''
+
+# rust configuration
+[[plugins]]
+repo = 'rust-lang/rust.vim'
+on_ft = 'rust'
+hook_source = '''
+let g:rustfmt_autosave = 1
 '''
 
 #tweet vim setting

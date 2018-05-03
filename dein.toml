@@ -311,9 +311,6 @@ let g:prettier#config#trailing_comma = 'es5'
 '''
 
 [[plugins]]
-repo = 'posva/vim-vue'
-
-[[plugins]]
 repo = 'w0rp/ale'
 depends = ['lightline']
 hook_add = '''
