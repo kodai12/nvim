@@ -2,6 +2,9 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
 repo = 'Shougo/vimproc.vim'
 hook_post_update = '''
   if dein#util#_is_windows()
@@ -141,6 +144,9 @@ repo = 'junegunn/vim-easy-align'
 repo = 'joonty/vdebug'
 
 [[plugins]]
+repo = 'osyo-manga/vim-anzu'
+
+[[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = '''
 let g:lightline = {
@@ -148,7 +154,7 @@ let g:lightline = {
   \ 'active': {
   \   'left': [
   \     ['mode', 'paste'],
-  \     ['gitbranch', 'readonly', 'filename', 'modified'],
+  \     ['gitbranch', 'readonly', 'filename', 'modified', 'anzu'],
   \   ],
   \   'right': [
   \     ['lineinfo', 'syntastic'],
@@ -158,6 +164,7 @@ let g:lightline = {
   \ },
   \ 'component_function': {
   \   'gitbranch': 'fugitive#head',
+  \   'anzu': 'anzu#search_status',
   \   'syntastic': 'SyntasticStatuslineFlag',
   \ },
   \ 'component_expand': {

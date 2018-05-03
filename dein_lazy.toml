@@ -30,27 +30,6 @@ on_i  = 1
 on_ft = ['snippet']
 depends = ['neosnippet-snippets']
 
-# many completion
-[[plugins]]
-repo = 'autozimu/LanguageClient-neovim'
-depends = 'deoplete.nvim'
-on_ft  = ['rust', 'vue', 'javascript', 'python']
-build = './install.sh'
-hook_source = '''
-set hidden
-let g:LanguageClient_diagnosticsEnable = 0
-let g:LanguageClient_serverCommands = {
-      \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-			\ 'vue': ['vls'],
-			\ 'javascript': ['javascript-typescript-stdio'],
-			\ 'python': ['pyls'],
-			\ }
-let g:LanguageClient_autoStart = 1
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
-}'''
-
 # html/css completion
 [[plugins]]
 repo = 'mattn/emmet-vim'
