@@ -235,6 +235,13 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 "" setting sky-color-clock
 set statusline+=%#SkyColorClockTemp#\ %#SkyColorClock#%{sky_color_clock#statusline()}
 
+"" setting vim-easy-align
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 "" tab setting cf.https://qiita.com/wadako111/items/755e753677dd72d8036d
 " Anywhere SID.
 function! s:SID_PREFIX()
