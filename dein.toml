@@ -1,6 +1,10 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
+# colorsheme
+[[plugins]]
+repo = 'cocopon/iceberg.vim'
+
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 
@@ -38,9 +42,6 @@ let g:nerdtree_tabs_open_on_console_startup=1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd StdinReadPre * let s:std_in=1
 '''
-
-[[plugins]]
-repo = 'cocopon/iceberg.vim'
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
@@ -383,3 +384,28 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 [[plugins]]
 repo = 'guns/xterm-color-table.vim'
+
+[[plugins]]
+repo = 'szw/vim-tags'
+hook_add = '''
+let g:vim_tags_ignore_files = ['.gitignore', 'node_modules', 'dist', '__pycache__', 'build']
+nnoremap <C-]> g<C-]>
+'''
+
+[[plugins]]
+repo = 'majutsushi/tagbar'
+if = '''has('nvim')'''
+hook_add = '''
+  let g:tagbar_previewwin_pos    = "rightbelow"
+  let g:tagbar_iconchars = ['▶', '▼']
+  let g:tagbar_map_openallfolds  = '-'
+  let g:tagbar_map_closeallfolds = '='
+  let g:tagbar_sort              = 0
+  let g:tagbar_show_visibility = 1
+  let g:tagbar_singleclick = 1
+  let g:tagbar_map_showproto = '<Nop>'
+  let g:tagbar_map_nexttag   = '<C-j>'
+  let g:tagbar_map_prevtag   = '<C-k>'
+  let g:tagbar_map_openfold  = '<Space>vo'
+  let g:tagbar_map_closefold = '<Space>vc'
+'''
