@@ -200,7 +200,7 @@ nnoremap <SPACE>mt :<C-u>MerginalToggle<CR>
 
 "" denite keymap
 nnoremap <SPACE>dg :Denite grep<CR>
-nnoremap <SPACE>dgc :DeniteCursorWord grep<CR>
+nnoremap <SPACE>dc :DeniteCursorWord grep<CR>
 
 "" nerdcommenter keymap
 nmap <SPACE>cn <plug>NERDCommenterNested
