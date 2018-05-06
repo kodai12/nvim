@@ -291,18 +291,18 @@ for n in range(1, 9)
 endfor
 " t1 で1番左のタブ、t2 で1番左から2番目のタブにジャンプ
 
-map <silent> [Tag]c :tablast <bar> tabnew<CR>
 " tc 新しいタブを一番右に作る
-map <silent> [Tag]x :tabclose<CR>
+map <silent> [Tag]c :tablast <bar> tabnew<CR>
 " tx タブを閉じる
-map <silent> [Tag]n :tabnext<CR>
+map <silent> [Tag]x :tabclose<CR>
 " tn 次のタブ
-map <silent> [Tag]p :tabprevious<CR>
+map <silent> [Tag]n :tabnext<CR>
 " tp 前のタブ
-"
+map <silent> [Tag]p :tabprevious<CR>
+
 " tag jump keymapping
-nnoremap <C-h> :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
-nnoremap <C-k> :split<CR> :exe("tjump ".expand('<cword>'))<CR>
+nnoremap <SPACE>tj :vsp<CR> :exe("tjump ".expand('<cword>'))<CR>
+nnoremap <SPACE>tk :split<CR> :exe("tjump ".expand('<cword>'))<CR>
 
 " tagbar keymapping
 nnoremap <SPACE>tb :TagbarToggle<CR>
