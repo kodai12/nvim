@@ -51,6 +51,28 @@ repo = 'Shougo/denite.nvim'
 hook_add = '''
 call denite#custom#var('file_rec', 'command',
     \ ['rg', '--files', '--glob', '!.git', ''])
+
+call denite#custom#map(
+    \ 'normal',
+    \ 'rp',
+    \ '<denite:do_action:qfreplace>',
+    \ 'noremap')
+
+" https://qiita.com/hrsh7th@github/items/303d46ba13532c502828 {{{
+function! DeniteQfreplace(context)
+  let qflist = []
+  for target in a:context['targets']
+  call add(qflist, {
+      \ 'filename': target['action__path'],
+      \ 'lnum': target['action__line'],
+      \ 'text': target['word'],
+      \ })
+  endfor
+call setqflist(qflist)
+  call qfreplace#start('tabnew')
+  endfunction
+  call denite#custom#action('file', 'qfreplace', function('DeniteQfreplace'))
+  " }}}
 '''
 
 [[plugins]]
@@ -158,25 +180,17 @@ let g:lightline = {
   \     ['gitbranch', 'readonly', 'filename', 'modified', 'anzu'],
   \   ],
   \   'right': [
-  \     ['lineinfo', 'syntastic'],
-  \     ['percent'],
+  \     ['lineinfo'],
   \     ['charcode', 'fileformat', 'fileencoding', 'filetype'],
+  \     ['ale'],
   \   ]
   \ },
   \ 'component_function': {
   \   'gitbranch': 'fugitive#head',
   \   'anzu': 'anzu#search_status',
-  \   'syntastic': 'SyntasticStatuslineFlag',
-  \ },
-  \ 'component_expand': {
-  \   'syntastic': 'SyntasticStatuslineFlag',
-  \ },
-  \ 'component_type': {
-  \   'syntastic': 'error',
+  \   'ale': 'AleStatus',
   \ },
   \ }
-let g:syntastic_mode_map = { 'mode': 'passive',
-      \                      'active_filetypes': ['c', 'cpp'] }
 augroup AutoSyntastic
   autocmd!
   autocmd BufWritePost *.c,*.cpp call s:syntastic()
