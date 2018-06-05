@@ -48,6 +48,7 @@ repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
+if = '''has('python3')'''
 hook_add = '''
 call denite#custom#var('file_rec', 'command',
     \ ['rg', '--files', '--glob', '!.git', ''])

@@ -96,17 +96,22 @@ repo = 'rust-lang/rust.vim'
 on_ft = 'rust'
 hook_source = '''
 let g:rustfmt_autosave = 1
-let g:rustfmt_command = '$HOME/.cargo/bin/rustfmt'
+let g:rustfmt_command = '~/.cargo/bin/rustfmt'
 '''
 
 [[plugins]]
 repo = 'racer-rust/vim-racer'
 on_ft = 'rust'
-hook_source = ```
+hook_source = '''
 set hidden
-let g:racer_cmd = '$HOME/.cargo/bin/racer'
-let $RUST_SRC_PATH="/usr/local/src/rustc-1.5.0/src"
-```
+let g:racer_cmd = '~/.cargo/bin/racer'
+let g:racer_experimental_completer = 1
+let $RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
+'''
 
 #tweet vim setting
 [[plugins]]
