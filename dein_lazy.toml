@@ -22,7 +22,9 @@ hook_source = '''
 repo = 'Shougo/neosnippet.vim'
 depends = 'context_filetype.vim'
 on_event = 'InsertCharPre'
-on_ft = 'snippet'
+on_i  = 1
+on_ft = ['snippet']
+depends = ['neosnippet-snippets']
 hook_source = '''
   imap <C-k> <Plug>(neosnippet_expand_or_jump)
   smap <C-k> <Plug>(neosnippet_expand_or_jump)
@@ -31,9 +33,6 @@ hook_source = '''
     set conceallevel=2 concealcursor=niv
   endif
 '''
-on_i  = 1
-on_ft = ['snippet']
-depends = ['neosnippet-snippets']
 
 # html/css completion
 [[plugins]]

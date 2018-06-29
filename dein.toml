@@ -53,6 +53,11 @@ hook_add = '''
 call denite#custom#var('file_rec', 'command',
     \ ['rg', '--files', '--glob', '!.git', ''])
 
+call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
+    \ [ '.git/', '.ropeproject/', '__pycache__/',
+    \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/',
+    \   'node_modules/', 'target/', '.nuxt/', 'dist/'])
+
 call denite#custom#map(
     \ 'normal',
     \ 'rp',
