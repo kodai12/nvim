@@ -429,3 +429,12 @@ hook_add = '''
   let g:tagbar_map_openfold  = '<Space>vo'
   let g:tagbar_map_closefold = '<Space>vc'
 '''
+
+[[plugins]]
+repo = 'machakann/vim-sandwich'
+
+[[plugins]]
+repo = 'luochen1990/rainbow'
+hook_add = '''
+let g:rainbow_active = 1
+'''
