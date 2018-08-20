@@ -54,6 +54,29 @@ on_ft = 'javascript'
 repo = 'posva/vim-vue'
 on_ft = 'vue'
 
+# rust configuration
+[[plugins]]
+repo = 'rust-lang/rust.vim'
+on_ft = 'rust'
+hook_source = '''
+  let g:rustfmt_autosave = 1
+  let g:rustfmt_command='~/.cargo/bin/rustfmt'
+'''
+
+[[plugins]]
+repo = 'racer-rust/vim-racer'
+on_ft = 'rust'
+hook_source = '''
+  set hidden
+  let g:racer_cmd='~/.cargo/bin/racer'
+  let $RUST_SRC_PATH="/Users/sakochikodai/.rustup/toolchains/nightly-x86_64-apple-darwin/lib/rustlib/src/rust/src"
+  let g:racer_experimental_completer = 1
+  nmap <SPACE>gd <Plug>(rust-def)
+  nmap <SPACE>gs <Plug>(rust-def-split)
+  nmap <SPACE>gx <Plug>(rust-def-vertical)
+  nmap <SPACE>K <Plug>(rust-doc)
+'''
+
 # python completion
 [[plugins]]
 repo = 'zchee/deoplete-jedi'
@@ -89,28 +112,32 @@ hook_source = '''
   augroup END
 '''
 
-# rust configuration
+# go configuration
 [[plugins]]
-repo = 'rust-lang/rust.vim'
-on_ft = 'rust'
+repo = 'fatih/vim-go'
+on_ft = 'go'
+
+[[plugins]]
+repo = 'zchee/deoplete-go'
+on_ft = 'go'
+if = '''has('nvim')'''
 hook_source = '''
-let g:rustfmt_autosave = 1
-let g:rustfmt_command = '~/.cargo/bin/rustfmt'
+set completeopt+=noinsert
+set completeopt+=noselect
+
+let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 '''
 
 [[plugins]]
-repo = 'racer-rust/vim-racer'
-on_ft = 'rust'
-hook_source = '''
-set hidden
-let g:racer_cmd = '~/.cargo/bin/racer'
-let g:racer_experimental_completer = 1
-let $RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-au FileType rust nmap gd <Plug>(rust-def)
-au FileType rust nmap gs <Plug>(rust-def-split)
-au FileType rust nmap gx <Plug>(rust-def-vertical)
-au FileType rust nmap <leader>gd <Plug>(rust-doc)
-'''
+repo = 'garyburd/go-explorer'
+on_ft = 'go'
+if = '''has('nvim')'''
+
+[[plugins]]
+repo = 'jodosha/vim-godebug'
+on_ft = 'go'
+if = '''has('nvim')'''
 
 #tweet vim setting
 [[plugins]]
