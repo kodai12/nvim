@@ -438,3 +438,11 @@ repo = 'luochen1990/rainbow'
 hook_add = '''
 let g:rainbow_active = 1
 '''
+
+[[plugins]]
+repo = 'twitvim/twitvim'
+hook_add = '''
+let twitvim_browser_cmd = 'open' " for Mac
+let twitvim_force_ssl = 1
+let twitvim_count = 40
+'''
