@@ -356,6 +356,7 @@ let g:ale_linters = {
 \   'python': ['flake8'],
 \   'php': ['phpstan'],
 \   'javascript': ['eslint'],
+\   'typescript': ['tslint', 'eslint', 'typecheck'],
 \   'vue': ['prettier'],
 \   'html': ['tidy'],
 \   'css': ['stylelint'],
@@ -365,6 +366,9 @@ let g:ale_linters = {
 \   'Dockerfile': ['hadolint'],
 \   'json': ['jsonlint'],
 \   'vim': ['vint'],
+\   'yaml': ['yamllint'],
+\   'rust': ['cargo', 'rustc'],
+\   'terraform': ['tflint'],
 \}
 
 let g:lightline = {
@@ -446,3 +450,6 @@ let twitvim_browser_cmd = 'open' " for Mac
 let twitvim_force_ssl = 1
 let twitvim_count = 40
 '''
+
+[[plugins]]
+repo = 'wakatime/vim-wakatime'
