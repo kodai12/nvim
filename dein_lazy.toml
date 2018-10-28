@@ -54,10 +54,6 @@ on_ft = 'javascript'
 repo = 'posva/vim-vue'
 on_ft = 'vue'
 
-[[plugins]]
-repo = 'ternjs/tern_for_vim'
-if = '''has('nvim')'''
-
 # rust configuration
 [[plugins]]
 repo = 'rust-lang/rust.vim'

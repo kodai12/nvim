@@ -9,6 +9,7 @@ set list
 set whichwrap=b,s,h,l,<,>,[,],~
 set scrolloff=5
 set t_Co=256
+set fileformats=unix,dos,mac
 set fileencodings=utf-8,euc-jp,sjis,cp932,iso-2022-jp
 set sh=zsh
 set clipboard+=unnamedplus
@@ -249,9 +250,6 @@ autocmd FileType vue syntax sync fromstart
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
-"" setting sky-color-clock
-set statusline+=%#SkyColorClockTemp#\ %#SkyColorClock#%{sky_color_clock#statusline()}
-
 "" setting vim-easy-align
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)
@@ -311,3 +309,32 @@ nnoremap <SPACE>tk :split<CR> :exe("tjump ".expand('<cword>'))<CR>
 
 " tagbar keymapping
 nnoremap <SPACE>tb :TagbarToggle<CR>
+
+" setting about gutentags
+augroup lightline_update
+    autocmd!
+    autocmd User GutentagsUpdating call lightline#update()
+    autocmd User GutentagsUpdated call lightline#update()
+augroup END
+set statusline+=%{gutentags#statusline()}
+if exists("g:plugs['vim-gutentags']")
+    " config project root markers.
+    let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+     let g:gutentags_ctags_tagfile = '.tags'
+     " enable ctags and gtags
+    let g:gutentags_modules = []
+    if executable('ctags')
+        let g:gutentags_modules += ['ctags']
+    endif
+    if executable('gtags-cscope') && executable('gtags')
+        let g:gutentags_modules += ['gtags_cscope']
+    endif
+     " generate datebases in my cache directory, prevent gtags files polluting my project
+    let s:vim_tags = expand('~/.cache/tags')
+    if !isdirectory(s:vim_tags)
+        silent! call mkdir(s:vim_tags, 'p')
+    endif
+     let g:gutentags_cache_dir = s:vim_tags
+     " forbid gutentags adding gtags databases
+    let g:gutentags_auto_add_gtags_cscope = 0
+endif
