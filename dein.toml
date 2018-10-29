@@ -50,41 +50,6 @@ autocmd StdinReadPre * let s:std_in=1
 repo = 'Shougo/neosnippet-snippets'
 
 [[plugins]]
-repo = 'Shougo/denite.nvim'
-if = '''has('python3')'''
-hook_add = '''
-call denite#custom#var('file_rec', 'command',
-    \ ['rg', '--files', '--glob', '!.git', ''])
-
-call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
-    \ [ '.git/', '.ropeproject/', '__pycache__/',
-    \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/',
-    \   'node_modules/', 'target/', '.nuxt/', 'dist/'])
-
-call denite#custom#map(
-    \ 'normal',
-    \ 'rp',
-    \ '<denite:do_action:qfreplace>',
-    \ 'noremap')
-
-" https://qiita.com/hrsh7th@github/items/303d46ba13532c502828 {{{
-function! DeniteQfreplace(context)
-  let qflist = []
-  for target in a:context['targets']
-  call add(qflist, {
-      \ 'filename': target['action__path'],
-      \ 'lnum': target['action__line'],
-      \ 'text': target['word'],
-      \ })
-  endfor
-call setqflist(qflist)
-  call qfreplace#start('tabnew')
-  endfunction
-  call denite#custom#action('file', 'qfreplace', function('DeniteQfreplace'))
-  " }}}
-'''
-
-[[plugins]]
 repo = 'Shougo/context_filetype.vim'
 
 [[plugins]]
@@ -134,34 +99,6 @@ endfunction
 
 [[plugins]]
 repo = 'rhysd/conflict-marker.vim'
-
-[[plugins]]
-repo = 'neoclide/denite-git'
-hook_add = '''
-call dein#add('Shougo/denite.nvim')
-call dein#add('chemzqm/vim-easygit')
-call dein#add('chemzqm/denite-git')
-call denite#custom#map(
-      \ 'normal',
-      \ 'a',
-      \ '<denite:do_action:add>',
-      \ 'noremap'
-      \)
-
-call denite#custom#map(
-      \ 'normal',
-      \ 'd',
-      \ '<denite:do_action:delete>',
-      \ 'noremap'
-      \)
-
-call denite#custom#map(
-      \ 'normal',
-      \ 'r',
-      \ '<denite:do_action:reset>',
-      \ 'noremap'
-      \)
-'''
 
 [[plugins]]
 repo = 'tmhedberg/matchit'

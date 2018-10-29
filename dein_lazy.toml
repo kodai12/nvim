@@ -1,9 +1,85 @@
 [[plugins]]
+repo = 'Shougo/neomru.vim'
+on_source = 'denite.nvim'
+
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
+on_source = 'denite.nvim'
+
+[[plugins]]
+repo = 'neoclide/denite-git'
+on_source = 'denite.nvim'
+hook_add = '''
+call dein#add('Shougo/denite.nvim')
+call dein#add('chemzqm/vim-easygit')
+call dein#add('chemzqm/denite-git')
+call denite#custom#map(
+      \ 'normal',
+      \ 'a',
+      \ '<denite:do_action:add>',
+      \ 'noremap'
+      \)
+
+call denite#custom#map(
+      \ 'normal',
+      \ 'd',
+      \ '<denite:do_action:delete>',
+      \ 'noremap'
+      \)
+
+call denite#custom#map(
+      \ 'normal',
+      \ 'r',
+      \ '<denite:do_action:reset>',
+      \ 'noremap'
+      \)
+'''
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+if = '''has('python3')'''
+hook_add = '''
+call denite#custom#var('file_rec', 'command',
+    \ ['rg', '--files', '--glob', '!.git', ''])
+
+call denite#custom#filter('matcher_ignore_globs', 'ignore_globs',
+    \ [ '.git/', '.ropeproject/', '__pycache__/', 'tags',
+    \   'venv/', 'images/', '*.min.*', 'img/', 'fonts/',
+    \   'node_modules/', 'target/', '.nuxt/', 'dist/', '.serverless/',
+    \   '.serverless_plugins'])
+
+call denite#custom#map(
+    \ 'normal',
+    \ 'rp',
+    \ '<denite:do_action:qfreplace>',
+    \ 'noremap')
+let ignore=&wildignore .
+      \ ',*.pyc,.git,.hg,.svn,.serverless,__pycache__,.serverless_plugins,.nuxt,tags,node_modules'
+call denite#custom#var('file/rec', 'command',
+      \ ['scantree.py', '--ignore', ignore])
+
+" https://qiita.com/hrsh7th@github/items/303d46ba13532c502828 {{{
+function! DeniteQfreplace(context)
+  let qflist = []
+  for target in a:context['targets']
+  call add(qflist, {
+      \ 'filename': target['action__path'],
+      \ 'lnum': target['action__line'],
+      \ 'text': target['word'],
+      \ })
+  endfor
+call setqflist(qflist)
+  call qfreplace#start('tabnew')
+  endfunction
+  call denite#custom#action('file', 'qfreplace', function('DeniteQfreplace'))
+  " }}}
+'''
+
+[[plugins]]
 repo = 'Shougo/deoplete.nvim'
 depends = 'context_filetype.vim'
 if ='''has('nvim')'''
-on_event = 'InsertCharPre'
-on_i = 1
+on_event = 'InsertEnter'
 hook_source = '''
   let g:deoplete#enable_at_startup = 1
   let g:deoplete#enable_ignore_case = 1

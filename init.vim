@@ -206,7 +206,16 @@ nnoremap <SPACE>mt :<C-u>MerginalToggle<CR>
 
 "" denite keymap
 nnoremap <SPACE>dg :Denite grep<CR>
+nnoremap <SPACE>dag :Denite -auto-preview grep<CR>
 nnoremap <SPACE>dc :DeniteCursorWord grep<CR>
+nnoremap <SPACE>dac :DeniteCursorWord -auto-preview grep<CR>
+nnoremap <SPACE>db :Denite buffer<CR>
+nnoremap <SPACE>df :DeniteProjectDir file/rec<CR>
+nnoremap <SPACE>dF :Denite file_mru<CR>
+nnoremap <SPACE>dy :Denite neoyank<CR>
+nnoremap <SPACE>dgb :Denite gitbranch<CR>
+nnoremap <SPACE>dgc :Denite gitchanged<CR>
+nnoremap <SPACE>dgl :Denite gitlog<CR>
 
 "" nerdcommenter keymap
 nmap <SPACE>cn <plug>NERDCommenterNested
