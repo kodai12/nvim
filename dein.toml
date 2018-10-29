@@ -261,35 +261,6 @@ endfunction
 # '''
 
 [[plugins]]
-repo = 'easymotion/vim-easymotion'
-hook_add = '''
-let g:EasyMotion_do_mapping = 0
-let g:EasyMotion_smartcase = 1
-let g:EasyMotion_use_smartsign_jp = 1
-let g:EasyMotion_use_migemo = 1
-let g:EasyMotion_use_upper = 1
-let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
-let g:EasyMotion_enter_jump_first = 1
-let g:EasyMotion_space_jump_first = 1
-let g:EasyMotion_prompt = 'Search by leading {n} character >>> '
-" <Leader>f{char} to move to {char}
-map  f <Plug>(easymotion-bd-f)
-nmap f <Plug>(easymotion-overwin-f)
-
-" s{char}{char} to move to {char}{char}
-nmap <SPACE>f <Plug>(easymotion-overwin-f2)
-vmap <SPACE>f <Plug>(easymotion-bd-f2)
-
-" Move to line
-map <SPACE>L <Plug>(easymotion-bd-jk)
-nmap <SPACE>L <Plug>(easymotion-overwin-line)
-
-" Move to word
-map  <SPACE>w <Plug>(easymotion-bd-w)
-nmap <SPACE>w <Plug>(easymotion-overwin-w)
-'''
-
-[[plugins]]
 repo = 'junegunn/vim-easy-align'
 
 [[plugins]]

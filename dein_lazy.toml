@@ -206,11 +206,6 @@ let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const
 '''
 
 [[plugins]]
-repo = 'garyburd/go-explorer'
-on_ft = 'go'
-if = '''has('nvim')'''
-
-[[plugins]]
 repo = 'jodosha/vim-godebug'
 on_ft = 'go'
 if = '''has('nvim')'''
