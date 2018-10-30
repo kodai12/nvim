@@ -40,9 +40,28 @@ hook_add = '''
 let g:NERDTreeShowBookmarks=1
 let NERDTreeShowHidden = 1
 let g:nerdtree_tabs_open_on_console_startup=1
+let g:NERDTreeDirArrows = 1
+let NERDTreeWinSize=22
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 autocmd StdinReadPre * let s:std_in=1
 '''
+
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+hook_add = '''
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+'''
+
+[[plugins]]
+repo = 'tiagofumo/vim-nerdtree-syntax-highlight'
+hook_add = '''
+let g:NERDTreeLimitedSyntax = 1
+'''
+
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim'
 
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
@@ -230,12 +249,12 @@ function! MyGitgutter()
     return join(ret, ' ')
 endfunction
 
-function! MyFileformat()
-    return winwidth(0) > 70 ? &fileformat : ''
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
 endfunction
 
-function! MyFiletype()
-    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+function! MyFileformat()
+  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
 endfunction
 
 function! MyFileencoding()
