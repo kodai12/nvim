@@ -402,17 +402,9 @@ let g:ale_linters = {
 
 [[plugins]]
 repo = 'mopp/sky-color-clock.vim'
-depends = ['lightline']
 hook_add = '''
-" For lightline.vim
-let g:lightline = {
-            \ 'component': {
-            \   'sky_color_clock': "%#SkyColorClock#%{' ' . sky_color_clock#statusline() . ' '}%#SkyColorClockTemp# ",
-            \ },
-            \ 'component_raw': {
-            \   'sky_color_clock': 1,
-            \ },
-            \ }
+set statusline+=%#SkyColorClockTemp#\ %#SkyColorClock#%{sky_color_clock#statusline()}
+let g:sky_color_clock#openweathermap_city_id = '1856717' " 宮崎市
 '''
 
 [[plugins]]

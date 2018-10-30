@@ -9,7 +9,7 @@ on_source = 'denite.nvim'
 [[plugins]]
 repo = 'neoclide/denite-git'
 on_source = 'denite.nvim'
-hook_add = '''
+hook_source = '''
 call dein#add('Shougo/denite.nvim')
 call dein#add('chemzqm/vim-easygit')
 call dein#add('chemzqm/denite-git')
@@ -38,7 +38,7 @@ call denite#custom#map(
 [[plugins]]
 repo = 'Shougo/denite.nvim'
 if = '''has('python3')'''
-hook_add = '''
+hook_source = '''
 call denite#custom#var('file_rec', 'command',
     \ ['rg', '--files', '--glob', '!.git', ''])
 
