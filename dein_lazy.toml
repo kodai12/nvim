@@ -53,8 +53,9 @@ call denite#custom#map(
     \ 'rp',
     \ '<denite:do_action:qfreplace>',
     \ 'noremap')
+
 let ignore=&wildignore .
-      \ ',*.pyc,.git,.hg,.svn,.serverless,__pycache__,.serverless_plugins,.nuxt,tags,node_modules'
+      \ ',*.pyc,.git,.hg,.svn,.serverless,__pycache__,.serverless_plugins,.nuxt,tags,node_modules,.git/tags'
 call denite#custom#var('file/rec', 'command',
       \ ['scantree.py', '--ignore', ignore])
 
@@ -95,13 +96,17 @@ hook_source = '''
 '''
 
 [[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
 repo = 'Shougo/neosnippet.vim'
 depends = 'context_filetype.vim'
-on_event = 'InsertCharPre'
+on_event = 'InsertEnter'
 on_i  = 1
 on_ft = ['snippet']
 depends = ['neosnippet-snippets']
 hook_source = '''
+  let g:neosnippet#snippets_directory="~/.cache/dein/repos/github.com/Shougo/neosnippet-snippets/neosnippets/"
   imap <C-k> <Plug>(neosnippet_expand_or_jump)
   smap <C-k> <Plug>(neosnippet_expand_or_jump)
   xmap <C-k> <Plug>(neosnippet_expand_target)
@@ -129,6 +134,20 @@ on_ft = 'javascript'
 [[plugins]]
 repo = 'posva/vim-vue'
 on_ft = 'vue'
+
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+on_ft = ['vue', 'toml']
+hook_source = '''
+  let g:precious_enable_switch_CursorMoved_i = {'*': 0}
+  let g:precious_enable_switch_CursorHold    = {'*': 0}
+	let g:precious_enable_switchers = {
+    \	'*':    {'setfiletype': 0},
+    \	'toml': {'setfiletype': 1},
+    \	'html': {'setfiletype': 1},
+    \	'vue':  {'setfiletype': 1},
+	\ }
+'''
 
 # rust configuration
 [[plugins]]
@@ -167,7 +186,7 @@ hook_source = '''
 repo = 'davidhalter/jedi-vim'
 on_i = 1
 on_ft = 'python'
-hook_add = '''
+hook_source = '''
   let g:jedi#force_py_version = 3
 '''
 
@@ -213,7 +232,7 @@ if = '''has('nvim')'''
 #tweet vim setting
 [[plugins]]
 repo = 'basyura/TweetVim'
-hook_add = '''
+hook_source = '''
   let g:tweetvim_display_icon = 1
 '''
 
@@ -231,17 +250,3 @@ repo = 'basyura/twibill.vim'
 
 [[plugins]]
 repo = 'mattn/favstar-vim'
-
-[[plugins]]
-repo = 'osyo-manga/vim-precious'
-on_ft = ['vue', 'toml']
-hook_source = '''
-  let g:precious_enable_switch_CursorMoved_i = {'*': 0}
-  let g:precious_enable_switch_CursorHold    = {'*': 0}
-	let g:precious_enable_switchers = {
-    \	'*':    {'setfiletype': 0},
-    \	'toml': {'setfiletype': 1},
-    \	'html': {'setfiletype': 1},
-    \	'vue':  {'setfiletype': 1},
-	\ }
-'''

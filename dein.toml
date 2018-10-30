@@ -9,22 +9,20 @@ hook_add = '''
 '''
 
 [[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-
-[[plugins]]
 repo = 'Shougo/vimproc.vim'
-hook_post_update = '''
-  if dein#util#_is_windows()
-    let cmd = 'tools\\update-dll-mingw'
-  elseif dein#util#_is_cygwin()
-    let cmd = 'make -f make_cygwin.mak'
-  elseif executable('gmake')
-    let cmd = 'gmake'
-  else
-    let cmd = 'make'
-  endif
-  let g:dein#plugin.build = cmd
-'''
+build = 'make'
+# hook_post_update = '''
+#   if dein#util#_is_windows()
+#     let cmd = 'tools\\update-dll-mingw'
+#   elseif dein#util#_is_cygwin()
+#     let cmd = 'make -f make_cygwin.mak'
+#   elseif executable('gmake')
+#     let cmd = 'gmake'
+#   else
+#     let cmd = 'make'
+#   endif
+#   let g:dein#plugin.build = cmd
+# '''
 
 [[plugins]]
 repo = 'thinca/vim-quickrun'
@@ -47,16 +45,22 @@ autocmd StdinReadPre * let s:std_in=1
 '''
 
 [[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-
-[[plugins]]
 repo = 'Shougo/context_filetype.vim'
 
 [[plugins]]
 repo = 'terryma/vim-multiple-cursors'
+hook_add = '''
+highlight multiple_cursors_cursor term=reverse cterm=reverse gui=reverse
+highlight link multiple_cursors_visual Visual
+nnoremap <silent> <SPACE>mc :MultipleCursorsFind <C-R>/<CR>
+vnoremap <silent> <SPACE>mc :MultipleCursorsFind <C-R>/<CR>
+'''
 
 [[plugins]]
 repo = 'mhinz/vim-startify'
+hook_add = '''
+nnoremap <SPACE>ss :Startify<CR>
+'''
 
 # make git convinient
 [[plugins]]
@@ -72,6 +76,8 @@ let g:gitgutter_sign_added = '✚'
 let g:gitgutter_sign_modified = '➜'
 let g:gitgutter_sign_removed = '✘'
 let g:gitgutter_max_signs = 500
+"nmap <silent> <C-n> <Plug>GitGutterPrevHunkzz
+"nmap <silent> <C-p> <Plug>GitGutterNextHunkzz
 '''
 
 [[plugins]]
@@ -80,10 +86,18 @@ hook_add = '''
 let g:committia_open_only_vim_starting = 1
 let g:committia_hooks = {}
 function! g:committia_hooks.edit_open(info)
+  " Additional settings
+  setlocal spell
+
+  " If no commit message, start with insert mode
+  if a:info.vcs ==# 'git' && getline(1) ==# ''
+    startinsert
+  end
+
   " Scroll the diff window from insert mode
   " Map <C-n> and <C-p>
-  nmap <buffer><C-j> <Plug>(committia-scroll-diff-down-half)
-  nmap <buffer><C-k> <Plug>(committia-scroll-diff-up-half)
+  imap <buffer><C-n> <Plug>(committia-scroll-diff-down-half)
+  imap <buffer><C-p> <Plug>(committia-scroll-diff-up-half)
 endfunction
 '''
 
@@ -459,3 +473,6 @@ repo = 'ludovicchabant/vim-gutentags'
 hook_add = '''
 let g:gutentags_ctags_tagfile = '.git/tags'
 '''
+
+[[plugins]]
+repo = 'mechatroner/rainbow_csv'

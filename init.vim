@@ -167,26 +167,6 @@ set timeout timeoutlen=3000 ttimeoutlen=100
 " プレビューや絞り込みをQuickFix/ロケーションリストの両方で有効化(デフォルト:2)
 let QFixWin_EnableMode = 1
 
-"" fugitive keymap
-nnoremap <silent> <SPACE>gs :<C-u>Gstatus<CR>
-nnoremap <silent> <SPACE>gv :<C-u>Gvdiff<CR>
-nnoremap <silent> <SPACE>gb :Gblame<CR>
-nnoremap <silent> <SPACE>ga :<C-u>Gwrite<CR>
-nnoremap <silent> <SPACE>gC :<C-u>Gcommit-v<CR>
-
-"" gitgutter keymap
-nmap <silent> <SPACE>gk <Plug>GitGutterPrevHunkzz
-nmap <silent> <SPACE>gj <Plug>GitGutterNextHunkzz
-nmap <silent> <SPACE>gp <Plug>GitGutterPreviewHunk
-nnoremap <silent> <SPACE>gu <Nop>
-nmap <silent> <SPACE>gU <Plug>GitGutterUndoHunk
-nnoremap <silent> <SPACE>ga <Nop>
-nmap <silent> <SPACE>gA <Plug>GitGutterStageHunk
-nnoremap <silent> <SPACE>gg :GitGutter<CR>
-nnoremap <silent> <SPACE>gtt :GitGutterToggle<CR>
-nnoremap <silent> <SPACE>gts :GitGutterSignsToggle<CR>
-nnoremap <silent> <SPACE>gtl :GitGutterLineHighlightsToggle<CR>
-
 "" agit keymap
 nmap <silent> <SPACE>av <Plug>Agit
 nmap <silent> <SPACE>avf <Plug>AgitFile
@@ -198,8 +178,14 @@ nnoremap <SPACE>udt :UndotreeToggle<CR>
 nnoremap [NERDTree] <Nop>
 nmap <SPACE>ft [NERDTree]
 nnoremap <silent> [NERDTree]t :NERDTreeToggle<CR>
-nnoremap <silent> [NERDTree]f :NERDTreeFocus<CR>
-nnoremap <silent> [NERDTree]F :NERDTreeFind<CR>
+nnoremap <silent> [NERDTree]f :NERDTreeFind<CR>
+
+"" fugitive keymap
+nnoremap <silent> <SPACE>gs :<C-u>Gstatus<CR>
+nnoremap <silent> <SPACE>gv :<C-u>Gvdiff<CR>
+nnoremap <silent> <SPACE>gB :Gblame<CR>
+nnoremap <silent> <SPACE>ga :<C-u>Gwrite<CR>
+nnoremap <silent> <SPACE>gC :<C-u>Gcommit-v<CR>
 
 "" merginal keymap
 nnoremap <SPACE>mt :<C-u>MerginalToggle<CR>
@@ -213,9 +199,9 @@ nnoremap <SPACE>db :Denite buffer<CR>
 nnoremap <SPACE>df :DeniteProjectDir file/rec<CR>
 nnoremap <SPACE>dF :Denite file_mru<CR>
 nnoremap <SPACE>dy :Denite neoyank<CR>
-nnoremap <SPACE>dgb :Denite gitbranch<CR>
-nnoremap <SPACE>dgc :Denite gitchanged<CR>
-nnoremap <SPACE>dgl :Denite gitlog<CR>
+nnoremap <SPACE>gb :Denite gitbranch<CR>
+nnoremap <SPACE>gc :Denite gitchanged<CR>
+nnoremap <SPACE>gl :Denite gitlog<CR>
 
 "" nerdcommenter keymap
 nmap <SPACE>cn <plug>NERDCommenterNested
