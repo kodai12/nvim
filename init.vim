@@ -9,8 +9,9 @@ set list
 set whichwrap=b,s,h,l,<,>,[,],~
 set scrolloff=5
 set t_Co=256
+set guifont=Hack\ Regular\ Nerd\ Font\ Complete:h15
 set fileformats=unix,dos,mac
-set fileencodings=UTF-8,euc-jp,sjis,cp932,iso-2022-jp
+set fileencodings=utf-8,euc-jp,sjis,cp932,iso-2022-jp
 set sh=zsh
 set clipboard+=unnamedplus
 set mouse-=a
@@ -333,3 +334,9 @@ if exists("g:plugs['vim-gutentags']")
      " forbid gutentags adding gtags databases
     let g:gutentags_auto_add_gtags_cscope = 0
 endif
+
+" terminal settings
+tnoremap <Esc> <C-\><C-n>
+tnoremap fd <C-\><C-n>
+autocmd TermOpen * setlocal norelativenumber
+autocmd TermOpen * setlocal nonumber
